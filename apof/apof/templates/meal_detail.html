@@ -1,0 +1,22 @@
+{% extends "base.html"%}
+{% block content%}
+{% if user.is_authenticated %}
+<h3>{{ tittle.name }}</h3>
+<div class="col-md-6">
+<a href="/restaurant/{{ title.id }}/"><h3>{{ menu.name }}</h3></br></a>
+{% for com in  menu.get_ratings.all %}
+  <p>User: {{ com.rate_by }}:</br>
+  Ocena: {{ com.ratings }}</br>
+  Komentarz: {{ com.comment }}</p>
+
+{% endfor %}
+
+</div>
+
+{% else %}
+<h1>ZALOGUJ SIE ~!</h1>
+{% endif %}
+{% endblock %}
+
+
+

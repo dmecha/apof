@@ -63,4 +63,6 @@ target/
 
 .vagrant
 apof/apof/settings/local.py
+apof/apof/restaurant/migrations/
+apof/stfp-config.json
 db.sqlite3

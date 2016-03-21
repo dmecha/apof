@@ -1,0 +1,40 @@
+{% extends "base.html"%}
+{% block content%}
+{% if user.is_authenticated %}
+
+<div class="col-md-6">
+<a href="/"><h3>{{ title.name }}</h3></br></a>
+<table class="table table-hover">
+    <thead>
+      <tr>
+        {% if menu.0.get_sizes.count > 1 %}
+        {{ menu.get_sizes.count }}
+        <th>Pizza</th>
+        <th>Mała</th>
+        <th>Średnia</th>
+        <th>Duża</th>
+        {% else %}
+        <th>Danie</th>
+        <th>Cena w zł</th>
+        {% endif %}
+      </tr>
+    </thead>
+	{% for meal in menu %}
+	<tbody>
+      <tr>
+        <td>{{ meal.name }}
+        <p>{% for ing in meal.ingerents.all %}{{ ing }}, {% endfor %}</p>
+        {% if meal.get_avgrate %}<p>Średnia ocena: <a href="/restaurant/{{ title.id }}/{{ meal.id }}/">{{ meal.get_avgrate }}</a></p>{% endif %}</td>
+        {% for size in meal.get_sizes %}<td><a>{{ size.price }}</a></td>{% endfor %}
+      </tr>
+	</tbody>	
+	{% endfor %}
+</table>
+</div>
+{% else %}
+<h1>ZALOGUJ SIE ~!</h1>
+{% endif %}
+{% endblock %}
+
+
+

@@ -1,0 +1,17 @@
+{% extends "base.html"%}
+{% block content%}
+{% if user.is_authenticated %}
+<div class="text-center" style="padding:50px 0">
+	<div class="col-md-6">
+	<div class="list-group">
+		{% for restaurant in restaurantList %}
+			<a href="/restaurant/{{ restaurant.id }}/" class="list-group-item enabled">{{ restaurant.name }}</a>
+		{% endfor %}
+	</div>
+	</div>
+</div>
+{% endif %}
+{% endblock %}
+
+
+

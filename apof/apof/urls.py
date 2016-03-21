@@ -15,7 +15,18 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
+
+from restaurant import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$', views.index, name='index'),
+    url(r'^restaurant/(?P<pk>\d+)/$',
+        views.menu, name='menu'),
+    url(r'^restaurant/(?P<pk>\d+)/(?P<meal_id>\d+)/$',
+        views.meal_detail, name='meal_detail'),
+    url(r'^login/$', auth_views.login, name='login'),
+    url(r'^logout/$', auth_views.logout, name='logout'),
+
 ]
