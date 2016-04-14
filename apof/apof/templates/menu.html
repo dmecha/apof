@@ -22,17 +22,20 @@
 	{% for meal in menu %}
 	<tbody>
       <tr>
-        <td>{{ meal.name }}
+        <td><p>{{ meal.name }}</p>
         <p>{% for ing in meal.ingerents.all %}{{ ing }}, {% endfor %}</p>
-        {% if meal.get_avgrate %}<p>Średnia ocena: <a href="/restaurant/{{ title.id }}/{{ meal.id }}/">{{ meal.get_avgrate }}</a></p>{% endif %}</td>
-        {% for size in meal.get_sizes %}<td><a>{{ size.price }}</a></td>{% endfor %}
+        {% if meal.get_avgrate %}<p>Średnia ocena: <a href="/restaurant/{{ title.slug }}/{{ meal.slug }}/">{{ meal.get_avgrate }}</a></p>{% else %}<a href="/restaurant/{{ title.slug }}/{{ meal.slug }}/">Oceń</a>{% endif %}</td>
+        {% for size in meal.get_sizes %}<td><a href="/my_cart/{{ title.slug }}/{{ meal.slug }}/{{ size.size }}/add">{{ size.price }}</a></td>{% endfor %}
       </tr>
 	</tbody>	
 	{% endfor %}
 </table>
 </div>
+
 {% else %}
-<h1>ZALOGUJ SIE ~!</h1>
+
+<h1>Please Login</h1>
+
 {% endif %}
 {% endblock %}
 

@@ -62,7 +62,10 @@ target/
 .ipynb_checkpoints
 
 .vagrant
+
 apof/apof/settings/local.py
 apof/apof/restaurant/migrations/
+apof/apof/cart/migrations/
 apof/stfp-config.json
 db.sqlite3
+wut.done

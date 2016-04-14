@@ -1,16 +1,27 @@
 {% extends "base.html"%}
 {% block content%}
 {% if user.is_authenticated %}
-<h3>{{ tittle.name }}</h3>
-<div class="col-md-6">
-<a href="/restaurant/{{ title.id }}/"><h3>{{ menu.name }}</h3></br></a>
-{% for com in  menu.get_ratings.all %}
-  <p>User: {{ com.rate_by }}:</br>
-  Ocena: {{ com.ratings }}</br>
-  Komentarz: {{ com.comment }}</p>
+<a href="/restaurant/{{ title.slug }}/"><h3>{{ menu.name }}</h3></br></a>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Rate</th>
+            <th>Comment</th>
+        </tr>
+    </thead>
+    {% for com in  menu.get_ratings.all %}
+    <tbody>
+        <tr>
+            <td><p>{{ com.rate_by }}</p></td>
+            <td><p>{{ com.ratings }}</p></td>
+            <td><p>{{ com.comment }}</p></td>
+        </tr>
+    {% endfor %}
+    </tbody>  
+</table>
 
-{% endfor %}
-
+<a href="/restaurant/{{ title.slug }}/{{ meal_slug }}/comment" class="btn btn-info">Add comment</a>
 </div>
 
 {% else %}

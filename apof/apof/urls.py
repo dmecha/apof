@@ -18,15 +18,26 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 
 from restaurant import views
+from cart import views as cart_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.index, name='index'),
-    url(r'^restaurant/(?P<pk>\d+)/$',
-        views.menu, name='menu'),
-    url(r'^restaurant/(?P<pk>\d+)/(?P<meal_id>\d+)/$',
-        views.meal_detail, name='meal_detail'),
+    url(r'^my_cart/$', cart_views.show_cart,
+        {'template_name': 'cart.html'}, name='show_cart'),
+
+    url(r'^mod/$', cart_views.mod, name='mod'),
+    url(r'^mod/add_res/$', views.add_res, name='add_res'),
+    url(r'^mod/(?P<restaurant_slug>[-\w]+)/$', views.edit_rest, name='edit_rest'),
+
+
+    url(r'^my_cart/(?P<restaurant_slug>[-\w]+)/(?P<meal_slug>[-\w]+)/(?P<size>[-\w]+)/add$', cart_views.cart_add, name='cart_add'),
+    url(r'^my_cart/(?P<restaurant_slug>[-\w]+)/(?P<meal_slug>[-\w]+)/(?P<size>[-\w]+)/remove$', cart_views.cart_remove, name='cart_remove'),
+
+    url(r'^restaurant/(?P<restaurant_slug>[-\w]+)/$', views.menu, name='menu'),
+    url(r'^restaurant/(?P<restaurant_slug>[-\w]+)/(?P<meal_slug>[-\w]+)/$', views.meal_detail, name='meal_detail'),
+    url(r'^restaurant/(?P<restaurant_slug>[-\w]+)/(?P<meal_slug>[-\w]+)/comment$', views.add_comment, name='comment_meal'),
+
     url(r'^login/$', auth_views.login, name='login'),
     url(r'^logout/$', auth_views.logout, name='logout'),
-
 ]

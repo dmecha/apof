@@ -23,11 +23,18 @@ SIZES_OF_MEAL = [
 
 class Restaurant(models.Model):
     name = models.CharField(max_length=128)
+    slug = models.SlugField(max_length=128, unique=True)
     address = models.CharField(max_length=128)
     phone_number = models.CharField(max_length=128)
+    second_pnumber = models.CharField(max_length=128, blank=True)
+    is_active = models.BooleanField(default=1)
 
     def __str__(self):
         return self.name
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('apof_restaurant', (), {'restaurant_slug': self.slug})
 
 
 class Ingerents(models.Model):
@@ -43,6 +50,7 @@ class Ingerents(models.Model):
 class MenuPosition(models.Model):
     restaurant = models.ForeignKey(Restaurant)
     name = models.CharField(max_length=128)
+    slug = models.SlugField(max_length=128, unique=True)
     ingerents = models.ManyToManyField(Ingerents, max_length=128, blank=True)
 
     def get_ratings(self):
@@ -57,8 +65,18 @@ class MenuPosition(models.Model):
                 suma += rate.ratings
             return round((suma / counter), 2)
 
+    def get_resname(self):
+        return self.restaurant.name
+
+    def get_resslug(self):
+        return self.restaurant.slug
+
     def get_sizes(self):
         return Size.objects.filter(name=self.id)
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('apof_menuposition', (), {'name_slug': self.slug})
 
     def __str__(self):
         return str(self.restaurant) + " " + self.name

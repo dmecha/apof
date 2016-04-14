@@ -1,0 +1,50 @@
+{% extends "base.html"%}
+{% block content%}
+{% if user.is_staff %}
+
+<a href="/mod/add_res/" class="btn btn-primary">Add restaurant</a>
+
+<h4>Users orders:</h4>
+<table class="table table-hover">
+    <thead>
+      <tr>
+      <th>User</th>
+      <th>Restaurant/Meal</th>
+      <th>How much to pay</th>
+      <th>Paid</th>
+      </tr>
+    </thead>
+	{% for c in cart %}
+	<tbody>
+	<tr>
+		{% if c.get_cart_items %}
+		<td>{{ c.user }}</td>
+		<td>{% for x in c.get_cart_items %}<p>{{ x.product.name }}, {{ x.product.get_size_display }}</p>{% endfor %}</td>
+		<td>{{ c.total }}</td>
+		<td>{{ c.paid }}</td>
+		{% endif %}
+	</tr>
+    </tbody>
+	{% endfor %}
+</table>
+<h4>All items to order:</h4>
+<table class="table table-hover">
+    <thead>
+      <tr>
+      <th>Restaurant</th>
+      <th>Meal</th>
+      <th>Size</th>
+      </tr>
+    </thead>
+	{% for x in ci %}
+	<tbody>
+	<tr>
+		<td>{{ x.product.name.restaurant }}</td>
+		<td>{{ x.product.name.name }}</td>
+		<td>{{ x.product.get_size_display }}</td>
+	</tr>
+    </tbody>
+	{% endfor %}
+</table>
+{% endif %}
+{% endblock %}

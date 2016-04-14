@@ -1,8 +1,5 @@
 from django.contrib import admin
 
-# Register your models here.
-
-
 from .models import (Ingerents,
                      MenuPosition,
                      Rating,
@@ -20,6 +17,8 @@ admin.site.register(Ingerents, IngerentsModelAdmin)
 
 class MenuPositionModelAdmin(admin.ModelAdmin):
     list_display = ["restaurant", "name"]
+    # sets up slug to be generated from product name
+    prepopulated_fields = {'slug': ('name',)}
 
     class Meta:
         model = MenuPosition
@@ -35,7 +34,10 @@ admin.site.register(Rating, RatingModelAdmin)
 
 
 class RestaurantModelAdmin(admin.ModelAdmin):
-    list_display = ["name", "address", "phone_number"]
+    list_display = ["name", "slug", "address",
+                    "phone_number", "second_pnumber", "is_active"]
+    # sets up slug to be generated from product name
+    prepopulated_fields = {'slug': ('name',)}
 
     class Meta:
         model = Restaurant
@@ -49,4 +51,3 @@ class SizeModelAdmin(admin.ModelAdmin):
     class Meta:
         model = Size
 admin.site.register(Size, SizeModelAdmin)
-
