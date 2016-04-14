@@ -62,7 +62,7 @@ target/
 .ipynb_checkpoints
 
 .vagrant
-
+apof/apof/static/admin/
 apof/apof/settings/local.py
 apof/apof/restaurant/migrations/
 apof/apof/cart/migrations/
