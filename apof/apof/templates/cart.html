@@ -10,17 +10,17 @@
       <th>Price</th>
       </tr>
     </thead>
-{% for x in ci %}
-<tbody>
+  {% for x in ci %}
+    <tbody>
       <tr>
-<td>{{ x.product.name.get_resname }}</td>
-<td>{{ x.product.name.name }}</td>
-<td>{{ x.product.get_size_display }}</td>
-<td>{{ x.product.price }}</td>
-<td><a href="/my_cart/{{ x.product.name.get_resslug }}/{{ x.product.name.slug }}/{{ x.product.size }}/remove" type="button" class="btn btn-danger">Delete</a></td>
-</tr>
+        <td>{{ x.product.name.get_resname }}</td>
+        <td>{{ x.product.name.name }}</td>
+        <td>{{ x.product.get_size_display }}</td>
+        <td>{{ x.product.price }}</td>
+        <td><a href="/my_cart/{{ x.product.name.get_resslug }}/{{ x.product.name.slug }}/{{ x.product.size }}/remove" type="button" class="btn btn-danger">Delete</a></td>
+      </tr>
     </tbody>
-{% endfor %}
+  {% endfor %}
 </table>
 <p>Total: {{ cart.0.total }} zł</p>
 {% endblock %}
