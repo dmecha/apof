@@ -48,9 +48,6 @@ class CartItem(models.Model):
     def get_size(self):
         return self.product.get_sizes()
 
-    # def get_absolute_url(self):
-    #     return self.product.get_absolute_url()
-
     def augment_quantity(self, quantity):
         self.quantity = self.quantity + int(quantity)
         self.save()

@@ -17,7 +17,6 @@ admin.site.register(Ingerents, IngerentsModelAdmin)
 
 class MenuPositionModelAdmin(admin.ModelAdmin):
     list_display = ["restaurant", "name"]
-    # sets up slug to be generated from product name
     prepopulated_fields = {'slug': ('name',)}
 
     class Meta:
@@ -36,7 +35,6 @@ admin.site.register(Rating, RatingModelAdmin)
 class RestaurantModelAdmin(admin.ModelAdmin):
     list_display = ["name", "slug", "address",
                     "phone_number", "second_pnumber", "is_active"]
-    # sets up slug to be generated from product name
     prepopulated_fields = {'slug': ('name',)}
 
     class Meta:

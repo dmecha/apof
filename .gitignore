@@ -64,7 +64,6 @@ target/
 .vagrant
 apof/apof/static/admin/
 apof/apof/settings/local.py
-apof/apof/restaurant/migrations/
 apof/apof/cart/migrations/
 apof/stfp-config.json
 db.sqlite3
