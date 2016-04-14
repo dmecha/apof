@@ -7,12 +7,12 @@
 <h4>Users orders:</h4>
 <table class="table table-hover">
     <thead>
-      <tr>
-      <th>User</th>
-      <th>Restaurant/Meal</th>
-      <th>How much to pay</th>
-      <th>Paid</th>
-      </tr>
+    <tr>
+        <th>User</th>
+        <th>Restaurant/Meal</th>
+        <th>How much to pay</th>
+        <th>Paid</th>
+    </tr>
     </thead>
 	{% for c in cart %}
 	<tbody>
@@ -30,18 +30,18 @@
 <h4>All items to order:</h4>
 <table class="table table-hover">
     <thead>
-      <tr>
-      <th>Restaurant</th>
-      <th>Meal</th>
-      <th>Size</th>
-      </tr>
+    <tr>
+        <th>Restaurant</th>
+        <th>Meal</th>
+        <th>Size</th>
+    </tr>
     </thead>
 	{% for x in ci %}
 	<tbody>
 	<tr>
-		<td>{{ x.product.name.restaurant }}</td>
-		<td>{{ x.product.name.name }}</td>
-		<td>{{ x.product.get_size_display }}</td>
+	   <td>{{ x.product.name.restaurant }}</td>
+	   <td>{{ x.product.name.name }}</td>
+	   <td>{{ x.product.get_size_display }}</td>
 	</tr>
     </tbody>
 	{% endfor %}
